@@ -1,0 +1,22 @@
+version: '3'
+services:
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=root
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DB_HOST=db
+    networks:
+      - nextcloud_default
+    ports:
+      - 8081:80
+    volumes:
+      - ./html:/var/www/html
+networks:
+  nextcloud_default:
+    external: true

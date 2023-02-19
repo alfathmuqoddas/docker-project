@@ -1,0 +1,20 @@
+version: "3"
+services:
+  phpmyadmin:
+    image: linuxserver/phpmyadmin:latest
+    container_name: phpmyadmin
+    networks:
+      - nextcloud_default
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jakarta
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./config:/config
+    ports:
+      - 8080:80
+    restart: unless-stopped
+networks:
+  nextcloud_default:
+    external: true
